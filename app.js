@@ -3,7 +3,11 @@ const app = express();
 
 const indexRoute = require('./routes/index');
 const port = 5000;
+const blogRoute = require('./routes/blog.route.js');
 
+
+app.use(express.json());
+app.use(express.urlencoded({ extends: true}));
 
 app.get('/', (request,response)=>{
     return response.send({
@@ -14,6 +18,7 @@ app.get('/', (request,response)=>{
 
 app.use("/",indexRoute);
 
+app.use("/",blogRoute);
 
 
 app.listen(port, ()=> {
