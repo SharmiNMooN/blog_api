@@ -38,12 +38,17 @@ router.get('/api/v1.0.0/posts', async(req,res)=>{
     
 });
 //api for single list veiw details
-    router.get('/api/v1.0.0/posts/:id',(req,res)=>{
-        return res.send({
-            message: 'blog view list'
-        });
-
+router.get('/api/v1.0.0/posts/:id',async(req,res)=>{
+    const blogId = req.params.id;
+    const blog = await blogModel.findOne({
+        _id: blogId,
     });
+    return res.send({
+        message: 'blog view details',
+        data:blog,
+    });
+
+});
    // api for update or modify
     router.patch('/api/v1.0.0/posts/:id',(req,res)=>{
 
