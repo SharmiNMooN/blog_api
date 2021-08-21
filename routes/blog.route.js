@@ -46,17 +46,33 @@ router.get('/api/v1.0.0/posts/:id',async(req,res)=>{
     return res.send({
         message: 'blog view details',
         data:blog,
-    });
+    })
 
 });
-   // api for update or modify
-    router.patch('/api/v1.0.0/posts/:id',(req,res)=>{
+// api for update or modify
+router.patch('/api/v1.0.0/posts/:id',async(req,res)=>{
 
-    });
-    //api for delete post
-    router.delete('/api/v1.0.0/posts/:id',(req,res)=>{
+    const blogId = req.params.id;
+    const filter = { 
+         _id:blogId
+    }
+    const payload = req.body;
 
+    const updatedData = await blogModel.findOneAndUpdate(filter,payload,{
+        new: true
     });
+    return res.send({
+        message: "Data is upadated",
+        data: updatedData,
+    })
+    
+
+});
+//api for delete post
+router.delete('/api/v1.0.0/posts/:id',(req,res)=>{
+
+
+});
 
 
 module.exports = router;
