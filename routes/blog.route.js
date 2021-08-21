@@ -69,7 +69,17 @@ router.patch('/api/v1.0.0/posts/:id',async(req,res)=>{
 
 });
 //api for delete post
-router.delete('/api/v1.0.0/posts/:id',(req,res)=>{
+router.delete('/api/v1.0.0/posts/:id',async(req,res)=>{
+    const blogId = req.params.id;
+    const filter ={
+        _id:blogId
+    }
+    const deleteData = await blogModel.findOneAndRemove(filter)
+
+    return res.send({
+        message: " Data is deleted",
+        data: deleteData,
+    })
 
 
 });
