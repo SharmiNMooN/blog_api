@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extends: true}));
 
 app.get('/', (request,response)=>{
     return response.send({
-        message: "HELLO WORLD",
+        message: "WELCOME TO BLOG API",
     });
 });
 

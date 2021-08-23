@@ -6,9 +6,9 @@ const blogModel = require('../models/blog.model.js');
 
 //api for data save
 router.post('/api/v1.0.0/posts',async(req,res)=>{
-    const body = req.body;
-    console.log(body);
-    const blog = await blogModel.create(body);
+    const payload = req.body; 
+    console.log(payload);
+    const blog = await blogModel.create(payload);
     return res.send({
         message:'Your blog post is save sucessfully',
         data: blog,
