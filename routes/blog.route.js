@@ -3,15 +3,28 @@ const express = require('express');
 
 const router = express.Router();
 const blogModel = require('../models/blog.model.js');
+const categoryModel = require('../models/category.model');
 
 //api for data save
 router.post('/api/v1.0.0/posts',async(req,res)=>{
     const payload = req.body; 
     console.log(payload);
+    if(!payload.category_id){
+        return res.status(400).send({
+            success: false,
+            message: 'category id is required',
+        })
+    }
+
+    //find category with cagetory_id
+
+    //check category exist or not
     const blog = await blogModel.create(payload);
     return res.send({
         message:'Your blog post is save sucessfully',
         data: blog,
+
+
     });
 });
 //api for get list a veiw
