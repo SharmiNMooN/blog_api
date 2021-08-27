@@ -4,6 +4,8 @@ const app = express();
 const indexRoute = require('./routes/index');
 const port = 5000;
 const blogRoute = require('./routes/blog.route.js');
+const categoryRoute = require('./routes/category.route.js');
+
 
 const db = require('./config/db.js');
 
@@ -26,6 +28,7 @@ app.get('/', (request,response)=>{
 app.use("/",indexRoute);
 
 app.use("/",blogRoute);
+app.use("/",categoryRoute)
 
 
 app.listen(port, ()=> {

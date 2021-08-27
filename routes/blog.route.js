@@ -17,8 +17,19 @@ router.post('/api/v1.0.0/posts',async(req,res)=>{
     }
 
     //find category with cagetory_id
+    const category = await categoryModel.findOne({
+        _id: payload.category_id,
 
+    });
+    
     //check category exist or not
+    if(!category){
+        return res.status(400).send({
+            success: false,
+            message: 'category id is not valid',
+        })
+    }
+
     const blog = await blogModel.create(payload);
     return res.send({
         message:'Your blog post is save sucessfully',
